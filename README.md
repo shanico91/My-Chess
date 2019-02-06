@@ -1,4 +1,4 @@
 # My-Chess
-My implementation to the game of chess In order to sharpen coding skills an try design patterns :)
+My implementation to the game of chess in order to sharpen coding skills and try design patterns :)
 
-This is a console implementation of chess.
+This is a console implementationץ
