@@ -5,10 +5,8 @@ import com.company.Pieces.Color;
 import java.util.Scanner;
 
 public class Game {
-    public Board board;
+    private Board board;
 
-    private boolean whiteInCheck;
-    private boolean blackInCheck;
     private Scanner scanner;
     private boolean blackTurn; //false = white, true = black
 
@@ -19,8 +17,6 @@ public class Game {
 
     private void init(){
         this.board.init();
-        this.whiteInCheck = false;
-        this.blackInCheck = false;
         this.blackTurn = false;
     }
 
@@ -41,6 +37,10 @@ public class Game {
         //get the move from console (POS from to POS to)
         String input = scanner.nextLine();
         String[] positions = input.split(" ");
+        while(inputNotValid(positions)){
+            input = scanner.nextLine();
+            positions = input.split(" ");
+        }
         Position from = parsePosition(positions[0]);
         Position to = parsePosition(positions[1]);
 
@@ -48,6 +48,11 @@ public class Game {
             System.out.println("not a valid move, try again");
             input = scanner.nextLine();
             positions = input.split(" ");
+            while(inputNotValid(positions)){
+                input = scanner.nextLine();
+                positions = input.split(" ");
+            }
+
             from = parsePosition(positions[0]);
             to = parsePosition(positions[1]);
         }
@@ -57,6 +62,27 @@ public class Game {
         return new Position('8'-input.charAt(1), input.charAt(0)-'a');
     }
 
+    private boolean inputNotValid(String[] positions){
+
+        if (positions.length != 2) return true;
+
+        for (String position : positions) {
+            if (!isPositionValid(position)) {
+                System.out.println("input is not valid, try again");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isPositionValid(String position){
+
+        if(position.charAt(0) > 104 || position.charAt(0) < 96 ||
+                position.charAt(1) > 56 || position.charAt(1) < 49) return false;
+
+        return true;
+    }
 
     //TODO: maybe add the option for castling
 }

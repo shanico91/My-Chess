@@ -4,5 +4,5 @@ import com.company.Pieces.Cell;
 
 public interface IPosGetter {
 
-    Cell getCellAt(int line, int row);
+    Cell getCellAt(int line, int column);
 }

@@ -1,15 +1,13 @@
 package com.company.Pieces;
 
 import com.company.Logic.IObserver;
-import com.company.Logic.IPosGetter;
 import com.company.Logic.Position;
-
-import java.util.HashSet;
 
 public class EmptyCell extends Cell  {
 
     public EmptyCell(Position position, IObserver observer){
         super(position, observer);
+        checkMyvalidMoves = new CheckMoves[]{new EmptyMoves()};
     }
 
     @Override
@@ -20,11 +18,6 @@ public class EmptyCell extends Cell  {
     @Override
     public String getName() {
         return " \t";
-    }
-
-    @Override
-    public HashSet<Position> validMoves(IPosGetter g) {
-        return null;
     }
 
 }

@@ -27,7 +27,7 @@ public class Board implements IPosGetter, IObserver{
         this.scanner = new Scanner(System.in);
     }
 
-    public boolean isGameOver(Color currPlayer){
+    boolean isGameOver(Color currPlayer){
         HashSet<Cell> currPieces = currPlayer == Color.BLACK ? blackPieces : whitePieces;
 
         for(Cell piece : currPieces) {
@@ -42,7 +42,7 @@ public class Board implements IPosGetter, IObserver{
     }
 
     //init the board
-    public void init(){
+    void init(){
         //TODO: use reflections to init
 
         for(int i=2; i<6; i++){ //empty cells:
@@ -85,7 +85,7 @@ public class Board implements IPosGetter, IObserver{
     }
 
     //will return true if moved and false otherwise
-    public boolean movePiece(Position from, Position to, boolean blackTurn) {
+    boolean movePiece(Position from, Position to, boolean blackTurn) {
         Cell fromCell = getCellAt(from);
         Cell toCell = getCellAt(to);
 
@@ -149,21 +149,21 @@ public class Board implements IPosGetter, IObserver{
     }
 
     @Override
-    public Cell getCellAt(int line, int row) {
-        return this.cells[line][row];
+    public Cell getCellAt(int line, int column) {
+        return this.cells[line][column];
     }
 
     private Cell getCellAt(Position position){
-        return this.cells[position.getLine()][position.getRow()];
+        return this.cells[position.getLine()][position.getColumn()];
     }
 
     private void setCell(Position toSet, Cell newCell){
-        this.cells[toSet.getLine()][toSet.getRow()] = newCell;
+        this.cells[toSet.getLine()][toSet.getColumn()] = newCell;
         newCell.update(toSet);
     }
 
     //print the board
-    public void print(){
+    void print(){
         int lineNumber = 8;
         for(int i=0; i<LENGTH; i++){
             System.out.print(lineNumber+"\t");
@@ -235,8 +235,9 @@ public class Board implements IPosGetter, IObserver{
         if(currColor == Color.NONE){
             return;
         }
+
         if(!isAdded){
-            //won't do anything if set doesn't contain the cell
+            //won't do anything if set doesn't contain the cell:
             blackPieces.remove(cell);
             whitePieces.remove(cell);
         } else {

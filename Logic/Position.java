@@ -1,12 +1,12 @@
 package com.company.Logic;
 
 public class Position {
-    private int row;
+    private int column;
     private int line;
 
     public Position(){}
-    public Position(int line, int row){
-        this.setRow(row);
+    public Position(int line, int column){
+        this.setColumn(column);
         this.setLine(line);
     }
 
@@ -14,26 +14,26 @@ public class Position {
         this.line = line;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public void setColumn(int column) {
+        this.column = column;
     }
 
     public int getLine() {
         return line;
     }
 
-    public int getRow() {
-        return row;
+    public int getColumn() {
+        return column;
     }
 
     public Position clone(){
-        return new Position(this.line, this.row);
+        return new Position(this.line, this.column);
     }
 
     @Override
-    public boolean equals(Object obj) { //TODO: do I need this?
+    public boolean equals(Object obj) { // do I need this? yes!!
         if (obj instanceof Position) {
-            if (((Position)obj).getLine() == this.line && ((Position)obj).getRow() == this.row)
+            if (((Position)obj).getLine() == this.line && ((Position)obj).getColumn() == this.column)
                 return true;
         }
 
@@ -42,11 +42,11 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return this.line*10 + this.row;
+        return this.line*10 + this.column;
     }
 
     @Override
     public String toString() {
-        return "row: " + this.row + " line: " + this.line;
+        return "column: " + this.column + " line: " + this.line;
     }
 }
